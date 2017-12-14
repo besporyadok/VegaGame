@@ -4,6 +4,8 @@
 #include <fstream>
 #include <SFML\Graphics.hpp>
 
+#include "Actor.hpp"
+
 class CMap {
 public:
 	CMap();
@@ -11,6 +13,9 @@ public:
 	~CMap();
 	
 	void Render(sf::RenderWindow& wnd);
+	void Frame(CActor& actor, float& fTime, float& fCurrFrame);
+	
+	std::string* getMapCode () {return m_pszMap;}
 	
 private:
 	unsigned m_uMapHeight, m_uMapWidth;

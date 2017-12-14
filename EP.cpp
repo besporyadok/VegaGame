@@ -28,15 +28,26 @@ int main(int argc, char* argv[]) {
 	
 	// Map test
 	CMap map("./Data/Level0");
+	CActor actor("Actor0", 250.f, 250.f, 96.f, 96.f);
 
+	float fCurrFrame = 0.f;
 	Event event;
+	Clock clock;
 	while(wnd.isOpen()) {
+		float fTime = clock.getElapsedTime().asMicroseconds();
+		fTime /= 400;
+		clock.restart();
+	
 		while(wnd.pollEvent(event)) {
 			if(event.type == Event::Closed) wnd.close();
 		}
 		
+		map.Frame(actor, fTime, fCurrFrame);
+		actor.Frame(map.getMapCode(), fTime);
+		
 		wnd.clear();
 		map.Render(wnd);
+		wnd.draw(actor.Ractor);
 		wnd.display();
 	}
 	
