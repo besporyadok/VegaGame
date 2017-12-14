@@ -15,6 +15,8 @@ Author:
 
 #include <SFML\Graphics.hpp>
 
+#include "Map.hpp"
+
 #pragma comment(lib, "sfml-system-d")
 #pragma comment(lib, "sfml-window-d")
 #pragma comment(lib, "sfml-graphics-d")
@@ -23,6 +25,9 @@ using namespace sf;
 
 int main(int argc, char* argv[]) {
 	RenderWindow wnd(VideoMode(640, 480, 32), "VegaGame");
+	
+	// Map test
+	CMap map("./Data/Level0");
 
 	Event event;
 	while(wnd.isOpen()) {
@@ -31,6 +36,7 @@ int main(int argc, char* argv[]) {
 		}
 		
 		wnd.clear();
+		map.Render(wnd);
 		wnd.display();
 	}
 	
