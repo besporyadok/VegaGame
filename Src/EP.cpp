@@ -1,0 +1,93 @@
+/*++
+
+VegeTable group, FTI grp. 21317
+
+Filename:
+	EP.cpp
+	
+Abstract:
+	Define entry point
+	
+Author:
+	KIRAY
+
+--*/
+
+#include <SFML\Graphics.hpp>
+
+#include "Actor.hpp"
+
+#pragma comment(lib, "sfml-system-d")
+#pragma comment(lib, "sfml-window-d")
+#pragma comment(lib, "sfml-graphics-d")
+
+using namespace sf;
+
+#define MAP_HEIGHT 15
+#define MAP_WIDTH 20
+std::string szMap[MAP_HEIGHT] = {
+	"00000000000000000000",
+	"01111111111111111110",
+	"01111111112111111110",
+	"01111111111111111110",
+	"01111111111111111110",
+	"01111000000000111110",
+	"01111111111111111110",
+	"01111211111121111110",
+	"01111111111111111110",
+	"01111111111111111110",
+	"01221000000000111110",
+	"01111111111111111110",
+	"01111111111111111110",
+	"01111111111111111110",
+	"00000000000000000000",
+};
+
+int main(int argc, char* argv[]) {
+	RenderWindow wnd(VideoMode(640, 480, 32), "VegaGame");
+	
+	float fTime = 0.f;
+	// Map tmp
+	Texture mapTexture;
+	mapTexture.loadFromFile("../Data/Level0.png");
+	Sprite mapSprite;
+	mapSprite.setTexture(mapTexture);
+	
+	// Actor test
+	Texture actorTexture;
+	actorTexture.loadFromFile("../Data/Actor0.png");
+	CActor actor(actorTexture, 50.f, 50.f, 96, 96, "Actor");
+	actor.setMap(szMap);
+	
+	Clock clock;
+	Event event;
+	while(wnd.isOpen()) {
+		fTime = clock.getElapsedTime().asMicroseconds();
+		fTime /= 600;
+		clock.restart();
+	
+		while(wnd.pollEvent(event)) {
+			if(event.type == Event::Closed) wnd.close();
+		}
+		
+		actor.Frame(fTime);
+		
+		wnd.clear();
+		
+		// Map tmp
+		for(unsigned i=0; i<MAP_HEIGHT; i++)
+			for(unsigned j=0; j<MAP_WIDTH; j++) {
+				if(szMap[i][j] == '0') mapSprite.setTextureRect(IntRect(64, 0, 32, 32));
+				if(szMap[i][j] == '1') mapSprite.setTextureRect(IntRect(0, 0, 32, 32));
+				if(szMap[i][j] == '2') mapSprite.setTextureRect(IntRect(32, 0, 32, 32));
+				
+				mapSprite.setPosition(j*32, i*32);
+				wnd.draw(mapSprite);
+			}
+		wnd.draw(actor.getSprite());
+		
+		wnd.display();
+	}
+	
+	return 0;
+}
