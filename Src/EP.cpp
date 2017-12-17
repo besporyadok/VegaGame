@@ -13,6 +13,7 @@ Author:
 
 --*/
 
+#include <sstream>
 #include <SFML\Graphics.hpp>
 
 #include "Actor.hpp"
@@ -45,6 +46,12 @@ std::string szMap[MAP_HEIGHT] = {
 
 int main(int argc, char* argv[]) {
 	RenderWindow wnd(VideoMode(640, 480, 32), "VegaGame");
+	
+	// Font test
+	Font fnt;
+	fnt.loadFromFile("../Data/main.ttf");
+	Text txt("", fnt, 20);
+	txt.setColor(Color::Green);
 	
 	float fTime = 0.f;
 	// Map tmp
@@ -84,6 +91,13 @@ int main(int argc, char* argv[]) {
 				mapSprite.setPosition(j*32, i*32);
 				wnd.draw(mapSprite);
 			}
+		
+		std::ostringstream strStream;
+		strStream << actor.getLabCnt();
+		txt.setString("Lab's: " + strStream.str());
+		txt.setPosition(500, 400);
+		wnd.draw(txt);
+		
 		wnd.draw(actor.getSprite());
 		
 		wnd.display();

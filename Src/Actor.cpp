@@ -4,7 +4,7 @@
 // -[BUG]: Animation stop if key unpressed
 // +[ERR]: Spawn actor in wall
 // -[BUG]: Two key pressed (stop move)
-// -[BUG]: Lab not store
+// +[BUG]: Lab not store
 
 using namespace sf;
 
@@ -14,6 +14,12 @@ CActor::CActor(sf::Texture& Texture, float fX, float fY, int nW, int nH, std::st
 CEntity(Texture, fX, fY, nW, nH, szName) {
 	eState = STAY;
 	m_Sprite.setTextureRect(IntRect(0, 0, m_nW, m_nH));
+	
+	m_uLabCnt = 0;
+}
+
+CActor::~CActor() {
+	m_pszMapCode = NULL;
 }
 
 void CActor::Frame(float& fTime) {
@@ -87,7 +93,8 @@ void CActor::Collision(float fDx, float fDy) {
 			}
 			
 			if(m_pszMapCode[i][j] == '2') {
-				m_pszMapCode[i][j] == '1';
+				m_pszMapCode[i][j] = '1';
+				m_uLabCnt++;
 			}
 		}
 }
