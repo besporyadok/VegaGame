@@ -29,10 +29,10 @@ using namespace sf;
 #define MAP_WIDTH 20
 std::string szMap[MAP_HEIGHT] = {
 	"00000000000000000000",
-	"01111111110011111100",
-	"01111111112011111100",
-	"01111111111011111100",
-	"01111111111011111100",
+	"01111111110011111110",
+	"01111111112011111110",
+	"01111111111011111110",
+	"01111111111011111110",
 	"01111111111111111110",
 	"01111111111111111110",
 	"01111111111111111110",
@@ -68,9 +68,14 @@ int main(int argc, char* argv[]) {
 	actor.setMap(szMap);
 
 	// Enemy Test
+	Image enemyImg;
+	enemyImg.loadFromFile("../Data/enemy.png");
+	enemyImg.createMaskFromColor(Color(255, 255, 255));
 	Texture textEnemy;
-	textEnemy.loadFromFile("../Data/enemy.png");
-	CEnemy Army1(textEnemy, 100.f, 200.f, 96, 96, "Army");//объект класса врага
+	textEnemy.loadFromImage(enemyImg);
+	
+	
+	CEnemy Army1(textEnemy, 100.f, 200.f, 96, 96, "Army"); //объект класса врага
 	Army1.setMap(szMap);
 	
 	Clock clock;
