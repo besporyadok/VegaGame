@@ -94,9 +94,10 @@ int main(int argc, char* argv[]) {
 		// Map tmp
 		for(unsigned i=0; i<MAP_HEIGHT; i++)
 			for(unsigned j=0; j<MAP_WIDTH; j++) {
-				if(szMap[i][j] == '0') mapSprite.setTextureRect(IntRect(64, 0, 32, 32));
+				if(szMap[i][j] == '0') mapSprite.setTextureRect(IntRect(32, 0, 32, 32));
 				if(szMap[i][j] == '1') mapSprite.setTextureRect(IntRect(0, 0, 32, 32));
-				if(szMap[i][j] == '2') mapSprite.setTextureRect(IntRect(32, 0, 32, 32));
+				if(szMap[i][j] == '2') mapSprite.setTextureRect(IntRect(64, 0, 32, 32));
+				if(szMap[i][j] == '3') mapSprite.setTextureRect(IntRect(96, 0, 32, 32));
 				
 				mapSprite.setPosition(j*32, i*32);
 				wnd.draw(mapSprite);
