@@ -12,7 +12,7 @@ public:
 	CEnemy(sf::Texture&, float, float, int, int, std::string);
 //	~CEnemy();
 
-	void checkCollisionWithMap(float m_fDx, float m_fDy);//ф-ция проверки столкновений с картой
+	void checkCollisionWithMap(float fDx, float fDy);//ф-ция проверки столкновений с картой
 	void Frame(float& fTime);
 
 	std::string* m_pszMapCode;

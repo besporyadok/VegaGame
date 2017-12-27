@@ -1,3 +1,18 @@
+/*++
+
+VegeTable group, FTI grp. 21317
+
+Filename:
+	Actor.hpp
+	
+Abstract:
+	Definition CActor class (player)
+	
+Author:
+	KIRAY
+
+--*/
+
 #pragma once
 
 #include "Entity.hpp"

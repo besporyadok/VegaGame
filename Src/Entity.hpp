@@ -1,3 +1,18 @@
+/*++
+
+VegeTable group, FTI grp. 21317
+
+Filename:
+	Entity.hpp
+	
+Abstract:
+	Definition base class for Actor, Enemy's and other
+	
+Author:
+	KIRAY
+
+--*/
+
 #pragma once
 
 #include <SFML\Graphics.hpp>

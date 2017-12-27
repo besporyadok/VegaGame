@@ -1,3 +1,18 @@
+/*++
+
+VegeTable group, FTI grp. 21317
+
+Filename:
+	Actor.cpp
+	
+Abstract:
+	Implementation CActor class (player)
+	
+Author:
+	KIRAY
+
+--*/
+
 #include "Actor.hpp"
 
 // -[ERR]: If unset map

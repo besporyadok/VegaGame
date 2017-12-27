@@ -1,3 +1,18 @@
+/*++
+
+VegeTable group, FTI grp. 21317
+
+Filename:
+	Entity.cpp
+	
+Abstract:
+	Implementation base class for Actor, Enemy's and other
+	
+Author:
+	KIRAY
+
+--*/
+
 #include "Entity.hpp"
 
 using namespace sf;

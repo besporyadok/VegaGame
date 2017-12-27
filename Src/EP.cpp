@@ -74,7 +74,6 @@ int main(int argc, char* argv[]) {
 	Texture textEnemy;
 	textEnemy.loadFromImage(enemyImg);
 	
-	
 	CEnemy Army1(textEnemy, 100.f, 200.f, 96, 96, "Army"); //объект класса врага
 	Army1.setMap(szMap);
 	
@@ -87,9 +86,7 @@ int main(int argc, char* argv[]) {
 	
 		while(wnd.pollEvent(event)) {
 			if(event.type == Event::Closed) wnd.close();
-		}
-
-		
+		}		
 		
 		actor.Frame(fTime);
 		Army1.Frame(fTime);
