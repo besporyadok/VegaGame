@@ -18,6 +18,7 @@ Author:
 
 #include "Actor.hpp"
 #include "Enemy.hpp"
+#include "Teacher.h"
 
 #pragma comment(lib, "sfml-system-d")
 #pragma comment(lib, "sfml-window-d")
@@ -77,7 +78,17 @@ int main(int argc, char* argv[]) {
 	
 	CEnemy Army1(textEnemy, 100.f, 200.f, 96, 96, "Army"); //объект класса врага
 	Army1.setMap(szMap);
-	
+
+	// 
+	sf:: Image image_Teacher;
+	image_Teacher.loadFromFile("../Data/Teacher.png");
+	image_Teacher.createMaskFromColor(image_Teacher.getPixel(0,0));
+	Texture textTeacher;
+	textTeacher.loadFromImage(image_Teacher);
+
+	CTeacher Teacher(textTeacher, 100.f, 200.f, 96, 96, "Teacher");//объект класса Учителя
+	Teacher.setMap(szMap);
+
 	Clock clock;
 	Event event;
 	while(wnd.isOpen()) {
@@ -91,7 +102,8 @@ int main(int argc, char* argv[]) {
 		
 		actor.Frame(fTime);
 		Army1.Frame(fTime);
-		
+		Teacher.Frame(fTime);
+
 		/* if(actor.m_bLife == true) {
 			if(actor.getRect() == Army1.getRect())
 				actor.setHealth(0);
@@ -119,6 +131,7 @@ int main(int argc, char* argv[]) {
 		
 		wnd.draw(actor.getSprite());
 		wnd.draw(Army1.getSprite());
+		wnd.draw(Teacher.getSprite());
 		
 		wnd.display();
 	}
