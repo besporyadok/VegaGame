@@ -11,7 +11,6 @@ public:
 	void Frame(float& fTime);
 	
 	void setMap(std::string* szMapCode) { m_pszMapCode = szMapCode; }
-	sf::Sprite& getSprite() {return m_Sprite;}
 	unsigned getLabCnt() {return m_uLabCnt;}
 	
 private:
@@ -21,4 +20,5 @@ private:
 	unsigned m_uLabCnt;
 
 	std::string* m_pszMapCode;
+	eStates m_state;
 };

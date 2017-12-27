@@ -1,10 +1,6 @@
 #include "Actor.hpp"
 
 // -[ERR]: If unset map
-// -[BUG]: Animation stop if key unpressed
-// +[ERR]: Spawn actor in wall
-// -[BUG]: Two key pressed (stop move)
-// +[BUG]: Lab not store
 
 using namespace sf;
 
@@ -12,7 +8,7 @@ CActor::CActor() : CEntity() {}
 
 CActor::CActor(sf::Texture& Texture, float fX, float fY, int nW, int nH, std::string szName) :
 CEntity(Texture, fX, fY, nW, nH, szName) {
-	eState = STAY;
+	m_state = STAY;
 	m_Sprite.setTextureRect(IntRect(0, 0, m_nW, m_nH));
 	
 	m_uLabCnt = 0;
@@ -26,7 +22,7 @@ void CActor::Frame(float& fTime) {
 //	if(m_bLife) {
 		Input();
 		
-		switch(eState) {
+		switch(m_state) {
 			case LEFT:
 				m_fDx = -m_fSpeed;
 				m_fCurrFrame += 0.005*fTime;
@@ -68,6 +64,7 @@ void CActor::Frame(float& fTime) {
 		
 		m_fSpeed = 0.f;
 		m_Sprite.setPosition(m_fX, m_fY);
+		m_state = STAY;
 		
 //		if(m_nHealth <= 0) m_bLife = false;
 //	}
@@ -101,19 +98,19 @@ void CActor::Collision(float fDx, float fDy) {
 
 void CActor::Input() {
 	if(Keyboard::isKeyPressed(Keyboard::Left)) {
-		eState = LEFT;
+		m_state = LEFT;
 		m_fSpeed = 0.1f;
 	}
 	if(Keyboard::isKeyPressed(Keyboard::Right)) {
-		eState = RIGHT;
+		m_state = RIGHT;
 		m_fSpeed = 0.1f;
 	}
 	if(Keyboard::isKeyPressed(Keyboard::Up)) {
-		eState = UP;
+		m_state = UP;
 		m_fSpeed = 0.1f;
 	}
 	if(Keyboard::isKeyPressed(Keyboard::Down)) {
-		eState = DOWN;
+		m_state = DOWN;
 		m_fSpeed = 0.1f;
 	}
 }
