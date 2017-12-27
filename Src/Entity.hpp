@@ -22,9 +22,17 @@ public:
 	CEntity();
 	CEntity(sf::Texture&, float, float, int, int, std::string);
 	
+	int getHealth() { return m_nHealth; }
+	void setHealth(int const nHealth) { m_nHealth = nHealth; }
 	sf::Sprite& getSprite() { return m_Sprite; }
+	sf::FloatRect getRect() {
+		sf::FloatRect rect(m_fX, m_fY, m_nW, m_nH);
+		return rect;
+	}
 	
 	virtual void Frame(float&) = 0;
+	
+	bool  m_bLife;
 	
 protected:
 	enum eStates {
@@ -35,7 +43,6 @@ protected:
 		STAY
 	};
 	
-	bool  m_bLife;
 	int   m_nW, m_nH, m_nHealth;
 	float m_fX, m_fY, m_fDx, m_fDy;
 	float m_fSpeed, m_fCurrFrame;

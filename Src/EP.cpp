@@ -46,7 +46,8 @@ std::string szMap[MAP_HEIGHT] = {
 };
 
 int main(int argc, char* argv[]) {
-	RenderWindow wnd(VideoMode(640, 480, 32), "VegaGame");
+	VideoMode desk = VideoMode::getDesktopMode();
+	RenderWindow wnd(VideoMode(640, 480, desk.bitsPerPixel), "VegaGame");
 	
 	// Font test
 	Font fnt;
@@ -90,6 +91,11 @@ int main(int argc, char* argv[]) {
 		
 		actor.Frame(fTime);
 		Army1.Frame(fTime);
+		
+		/* if(actor.m_bLife == true) {
+			if(actor.getRect() == Army1.getRect())
+				actor.setHealth(0);
+		} */
 
 		wnd.clear();
 		
@@ -105,9 +111,9 @@ int main(int argc, char* argv[]) {
 				wnd.draw(mapSprite);
 			}
 		
-		std::ostringstream strStream;
-		strStream << actor.getLabCnt();
-		txt.setString("Lab's: " + strStream.str());
+		std::ostringstream strLab, strHealth;
+		strLab << actor.getLabCnt(); strHealth << actor.getHealth();
+		txt.setString("Lab's: " + strLab.str() + "\nHealth: " + strHealth.str());
 		txt.setPosition(500, 400);
 		wnd.draw(txt);
 		
