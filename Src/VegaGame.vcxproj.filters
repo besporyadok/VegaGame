@@ -20,12 +20,18 @@
     <ClCompile Include="EP.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.hpp">
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="Entity.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.hpp">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>

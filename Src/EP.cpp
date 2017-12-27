@@ -17,6 +17,7 @@ Author:
 #include <SFML\Graphics.hpp>
 
 #include "Actor.hpp"
+#include "Enemy.hpp"
 
 #pragma comment(lib, "sfml-system-d")
 #pragma comment(lib, "sfml-window-d")
@@ -28,16 +29,16 @@ using namespace sf;
 #define MAP_WIDTH 20
 std::string szMap[MAP_HEIGHT] = {
 	"00000000000000000000",
-	"01111111111111111110",
-	"01111111112111111110",
-	"01111111111111111110",
-	"01111111111111111110",
-	"01111000000000111110",
-	"01111111111111111110",
-	"01111211111121111110",
+	"01111111110011111100",
+	"01111111112011111100",
+	"01111111111011111100",
+	"01111111111011111100",
 	"01111111111111111110",
 	"01111111111111111110",
-	"01221000000000111110",
+	"01111111111111111110",
+	"01111111000000011110",
+	"01111111111111111110",
+	"01221111111111111110",
 	"01111111111111111110",
 	"01111111111111111110",
 	"01111111111111111110",
@@ -65,6 +66,12 @@ int main(int argc, char* argv[]) {
 	actorTexture.loadFromFile("../Data/Actor0.png");
 	CActor actor(actorTexture, 50.f, 50.f, 96, 96, "Actor");
 	actor.setMap(szMap);
+
+	// Enemy Test
+	Texture textEnemy;
+	textEnemy.loadFromFile("../Data/enemy.png");
+	CEnemy Army1(textEnemy, 100.f, 200.f, 96, 96, "Army");//объект класса врага
+	Army1.setMap(szMap);
 	
 	Clock clock;
 	Event event;
@@ -76,9 +83,12 @@ int main(int argc, char* argv[]) {
 		while(wnd.pollEvent(event)) {
 			if(event.type == Event::Closed) wnd.close();
 		}
+
+		
 		
 		actor.Frame(fTime);
-		
+		Army1.Frame(fTime);
+
 		wnd.clear();
 		
 		// Map tmp
@@ -99,6 +109,7 @@ int main(int argc, char* argv[]) {
 		wnd.draw(txt);
 		
 		wnd.draw(actor.getSprite());
+		wnd.draw(Army1.getSprite());
 		
 		wnd.display();
 	}
