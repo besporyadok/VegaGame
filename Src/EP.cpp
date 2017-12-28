@@ -30,56 +30,55 @@ int main(int argc, char* argv[]) {
 	VideoMode desk = VideoMode::getDesktopMode();
 	RenderWindow wnd(VideoMode(640, 480, desk.bitsPerPixel), "VegaGame");
 	
-	// Font test
+	// Создаём шрифты для отображения худа
 	Font fnt;
 	fnt.loadFromFile("../Data/main.ttf");
 	Text txt("", fnt, 20);
 	txt.setColor(Color::Green);
 	
 	float fTime = 0.f;
-	// Map tmp
+	// Создаём спрайт для карты
 	Texture mapTexture;
 	mapTexture.loadFromFile("../Data/Level0.png");
 	Sprite mapSprite;
 	mapSprite.setTexture(mapTexture);
 	
-	// Actor test
+	// Создаём объект класса игрока
 	Texture actorTexture;
 	actorTexture.loadFromFile("../Data/Actor0.png");
 	CActor actor(actorTexture, 50.f, 50.f, 96, 96, "Actor");
-//	actor.setMap(g_szMap);
 
-	// Enemy Test
+	// Создаём объект класса враг
 	Image enemyImg;
 	enemyImg.loadFromFile("../Data/enemy.png");
 	enemyImg.createMaskFromColor(Color(255, 255, 255));
 	Texture textEnemy;
 	textEnemy.loadFromImage(enemyImg);
 	
-	CEnemy Army1(textEnemy, 100.f, 200.f, 96, 96, "Army"); //объект класса врага
-//	Army1.setMap(g_szMap);
+	CEnemy Army1(textEnemy, 100.f, 200.f, 96, 96, "Army");
 
-	// 
+	// Создаём объект класса учитель
 	sf:: Image image_Teacher;
 	image_Teacher.loadFromFile("../Data/Teacher.png");
 	image_Teacher.createMaskFromColor(image_Teacher.getPixel(0,0));
 	Texture textTeacher;
 	textTeacher.loadFromImage(image_Teacher);
 
-	CTeacher Teacher(textTeacher, 100.f, 200.f, 96, 96, "Teacher");//объект класса Учителя
-//	Teacher.setMap(g_szMap);
+	CTeacher Teacher(textTeacher, 100.f, 200.f, 96, 96, "Teacher");
 
 	Clock clock;
 	Event event;
 	while(wnd.isOpen()) {
 		fTime = clock.getElapsedTime().asMicroseconds();
-		fTime /= 600;
+		fTime /= 600; // Скорость игры
 		clock.restart();
 	
 		while(wnd.pollEvent(event)) {
 			if(event.type == Event::Closed) wnd.close();
 		}		
 		
+		// Готовим кадр для рендеринга (обрабатываем управление, просчитываем столкновения и перемещаем спрайт, если необходимо)
+		// Передаём скорость игры
 		actor.Frame(fTime);
 		Army1.Frame(fTime);
 		Teacher.Frame(fTime);
@@ -91,7 +90,7 @@ int main(int argc, char* argv[]) {
 
 		wnd.clear();
 		
-		// Map tmp
+		// Отрисовываем карту
 		for(unsigned i=0; i<MAP_HEIGHT; i++)
 			for(unsigned j=0; j<MAP_WIDTH; j++) {
 				if(g_szMap[i][j] == '0') mapSprite.setTextureRect(IntRect(32, 0, 32, 32));
@@ -103,12 +102,14 @@ int main(int argc, char* argv[]) {
 				wnd.draw(mapSprite);
 			}
 		
+		// Отрисовываем худ (здоровье, собранные лабы)
 		std::ostringstream strLab, strHealth;
 		strLab << actor.getLabCnt(); strHealth << actor.getHealth();
 		txt.setString("Lab's: " + strLab.str() + "\nHealth: " + strHealth.str());
 		txt.setPosition(500, 400);
 		wnd.draw(txt);
 		
+		// Рисуем объекты
 		wnd.draw(actor.getSprite());
 		wnd.draw(Army1.getSprite());
 		wnd.draw(Teacher.getSprite());

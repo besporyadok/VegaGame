@@ -22,21 +22,18 @@ class CActor : public CEntity {
 public:
 	CActor();
 	CActor(sf::Texture&, float, float, int, int, std::string);
-	~CActor();
 	
 	void Frame(float& fTime);
 	
-//	void setMap(std::string* szMapCode) { m_pszMapCode = szMapCode; }
-	unsigned getLabCnt() {return m_uLabCnt;}
+	unsigned getLabCnt() {return m_uLabCnt;} // Получаем кол-во собранных лаб.
 	
 private:
-	void Input();
-	void Collision(float fDx, float fDy);
+	void Input(); // Обработка нажатия клавиш
+	void Collision(float fDx, float fDy); // Просчёт столкновений
 	
-	unsigned m_uLabCnt;
+	unsigned m_uLabCnt; // Кол-во собранных лаб.
 
-	std::string* m_pszMapCode;
-	eStates m_state;
+	eStates m_state; // Состояние (куда движемся иль стоим)
 };
 
 #endif // ndef _ACTOR_H

@@ -19,6 +19,15 @@ using namespace sf;
 
 CEntity::CEntity() {}
 
+/**
+	1) Текстура (будет наложена на спрайт) 
+	2) Координата спавна (икс)
+	3) Координата спавна (игрек)
+	4) Ширина спрайта
+	5) Высота спрайта
+	6) Имя НПС
+**/
+
 CEntity::CEntity(sf::Texture& Texture, float fX, float fY, int nW, int nH, std::string szName) {
 	m_Texture = Texture;
 	m_Sprite.setTexture(m_Texture);
