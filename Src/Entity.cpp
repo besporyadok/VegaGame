@@ -43,7 +43,7 @@ CEntity::CEntity(sf::Texture& Texture, float fX, float fY, int nW, int nH, std::
 	
 	m_szName = szName;
 	
-	m_nHealth = 100;
+	nHealth = 100;
 	m_bLife = true;
 	
 	m_fCurrFrame = 0.f;

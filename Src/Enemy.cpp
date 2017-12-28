@@ -1,20 +1,6 @@
 //Автор Пийпаринен Алексей 21317гр 
 // Класс врага
 
-/*
-	++	CEnemy (*)
-	++	void checkCollisionWithMap(*)
-	+-	void update(*)
-
-	bool  m_bLife;
-	int   m_nW, m_nH, m_nHealth;
-	float m_fX, m_fY, m_fDx, m_fDy;
-	float m_fSpeed, m_fCurrFrame;
-	sf::Sprite  m_Sprite;
-	fTime
-
-*/
-
 #include "Enemy.hpp"
 
 using namespace sf;
@@ -76,28 +62,28 @@ void CEnemy::Frame(float& fTime) {
 		case RIGHT: // состояние идти вправо 
 			m_fDx = m_fSpeed;
 			m_fCurrFrame += 0.005f*fTime;
-			if (m_fCurrFrame > 3) m_fCurrFrame -= 3;
+			if (m_fCurrFrame > 2) m_fCurrFrame -= 2;
 			m_Sprite.setTextureRect(IntRect(96 * int(m_fCurrFrame), 192, 96, 96)); 
 			break; 
 			
 		case LEFT:	// Состояние идти влево 
 			m_fDx = -m_fSpeed;
 			m_fCurrFrame += 0.005f*fTime;
-			if (m_fCurrFrame > 3) m_fCurrFrame -= 3;
+			if (m_fCurrFrame > 2) m_fCurrFrame -= 2;
 			m_Sprite.setTextureRect(IntRect(96 * int(m_fCurrFrame), 96, 96, 96));
 			break;
 				
 		case UP:	// Идти вверх 
 			m_fDy = -m_fSpeed;
 			m_fCurrFrame += 0.005f*fTime;
-			if (m_fCurrFrame > 3) m_fCurrFrame -= 3;
+			if (m_fCurrFrame > 2) m_fCurrFrame -= 2;
 			m_Sprite.setTextureRect(IntRect(96 * int(m_fCurrFrame), 288, 96, 96));
 			break;
 				
 		case DOWN:	// Идти вниз 
 			m_fDy = m_fSpeed;
 			m_fCurrFrame += 0.005f*fTime;
-			if (m_fCurrFrame > 3) m_fCurrFrame -= 3;
+			if (m_fCurrFrame > 2) m_fCurrFrame -= 2;
 			m_Sprite.setTextureRect(IntRect(96 * int(m_fCurrFrame), 0, 96, 96));
 			break;
 	} // end switch

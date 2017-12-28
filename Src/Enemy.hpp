@@ -1,5 +1,5 @@
 //Автор Пийпаринен Алексей 21317гр 
-// Класс врага
+// Класс врага (коммисара)
 #ifndef _ENEMY_H
 #define _ENEMY_H
 
@@ -11,13 +11,11 @@ public:
 
 	CEnemy();             // Конструкторы с без параметра и с параметрами 
 	CEnemy(sf::Texture&, float, float, int, int, std::string);
-//	~CEnemy();
 
 	void checkCollisionWithMap(float fDx, float fDy);//ф-ция проверки столкновений с картой
 	void Frame(float& fTime);
 
 	std::string* m_pszMapCode;
-//	void setMap(std::string* dsd) {m_pszMapCode = dsd;}
 
 	sf::Sprite getSprite() {return m_Sprite;}
 

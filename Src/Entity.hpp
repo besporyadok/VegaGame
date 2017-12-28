@@ -24,9 +24,6 @@ class CEntity {
 public:
 	CEntity();
 	CEntity(sf::Texture&, float, float, int, int, std::string);
-	
-	int getHealth() { return m_nHealth; }  // Получить здоровье
-	void setHealth(int const nHealth) { m_nHealth = nHealth; }  // Установить здоровье
 
 	sf::Sprite& getSprite() { return m_Sprite; }  // Получить спрайт
 
@@ -39,6 +36,7 @@ public:
 	virtual void Frame(float&) = 0;  // Подготовка кадра
 	
 	bool  m_bLife; // Флаг, показывающий, жив иль нет
+	int nHealth; // Здоровье
 	
 protected:
 	// Состояния
@@ -50,7 +48,7 @@ protected:
 		STAY
 	};
 	
-	int   m_nW, m_nH, m_nHealth; // Высота, ширина спрайта и здоровье соответственно
+	int   m_nW, m_nH; // Высота, ширина спрайта соответственно
 	float m_fX, m_fY, m_fDx, m_fDy; // Текущая координата икс, игрек, смещение, на которое необходимо будет сдвинуться по иксу и игреку
 	float m_fSpeed, m_fCurrFrame; // Скорость перемещения, текущий кадр
 	sf::Sprite  m_Sprite; // Спрайт

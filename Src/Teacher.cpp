@@ -7,20 +7,20 @@ using namespace sf;
 
 CTeacher::CTeacher() : CEntity() {}
 
-CTeacher::CTeacher(sf::Texture& Texture, float fX, float fY, int nW, int nH, std::string szName) : CEntity(Texture, fX, fY, nW, nH, szName) 
-	{
+CTeacher::CTeacher(sf::Texture& Texture, float fX, float fY, int nW, int nH, std::string szName) : 
+CEntity(Texture, fX, fY, nW, nH, szName) {
 		if (szName == "Teacher")
 			{ //Задаем спрайту один прямоугольник для вывода одного игрока. IntRect – для приведения типов 
-				m_nW = nW; m_nH = nH;
+			//	m_nW = nW; m_nH = nH;
 				m_Sprite.setTextureRect(IntRect(0, 0, m_nW, m_nH));
 
 				direction1 = rand() % (3); //Направление движения врага задаём случайным образом через генератор случайных чисел 
-				m_fSpeed = 0.1f;//даем скорость.этот объект всегда двигается 
+				m_fSpeed = 0.07f;//даем скорость.этот объект всегда двигается  /// KIRAY: Speed change
 				m_fDx = m_fSpeed; 
 
-				m_fX = fX; m_fY = fY;
+			//	m_fX = fX; m_fY = fY;
 			} 
-	}
+}
 
 //ф-ция проверки столкновений с картой
 void  CTeacher::CollisionWithMap(float m_fDx, float m_fDy) { 
@@ -59,28 +59,28 @@ void CTeacher::Frame(float& fTime) {
 				case RIGHT: {//состояние идти вправо 
 					m_fDx = m_fSpeed;
 					m_fCurrFrame += 0.005*fTime;
-					if (m_fCurrFrame > 3) m_fCurrFrame -= 3;
+					if (m_fCurrFrame > 2) m_fCurrFrame -= 2;
 					m_Sprite.setTextureRect(IntRect(96 * int(m_fCurrFrame), 192, 96, 96)); 
 					break; } 
 			
 				case LEFT:	{//состояние идти влево 
 					m_fDx = -m_fSpeed;
 					m_fCurrFrame += 0.005*fTime;
-					if (m_fCurrFrame > 3) m_fCurrFrame -= 3;
+					if (m_fCurrFrame > 2) m_fCurrFrame -= 2;
 					m_Sprite.setTextureRect(IntRect(96 * int(m_fCurrFrame), 96, 96, 96));
 					break; } 
 				
 				case UP:	{//идти вверх 
 					m_fDy = -m_fSpeed;
 					m_fCurrFrame += 0.005*fTime;
-					if (m_fCurrFrame > 3) m_fCurrFrame -= 3;
+					if (m_fCurrFrame > 2) m_fCurrFrame -= 2;
 					m_Sprite.setTextureRect(IntRect(96 * int(m_fCurrFrame), 288, 96, 96));
 					break; }
 				
 				case DOWN:	{//идти вниз 
 					m_fDy = m_fSpeed;
 					m_fCurrFrame += 0.005*fTime;
-					if (m_fCurrFrame > 3) m_fCurrFrame -= 3;
+					if (m_fCurrFrame > 2) m_fCurrFrame -= 2;
 					m_Sprite.setTextureRect(IntRect(96 * int(m_fCurrFrame), 0, 96, 96));
 					break; } 
 			}  
