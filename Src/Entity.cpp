@@ -28,7 +28,7 @@ CEntity::CEntity() {}
 	6) Èìÿ ÍÏÑ
 **/
 
-CEntity::CEntity(sf::Texture& Texture, float fX, float fY, int nW, int nH, std::string szName) {
+CEntity::CEntity(sf::Texture& Texture, float fX, float fY, int nW, int nH) {
 	m_Texture = Texture;
 	m_Sprite.setTexture(m_Texture);
 	
@@ -41,12 +41,9 @@ CEntity::CEntity(sf::Texture& Texture, float fX, float fY, int nW, int nH, std::
 	m_nW = nW; m_nH = nH;
 	m_fDx = m_fDy = 0.f;
 	
-	m_szName = szName;
-	
 	nHealth = 100;
 	m_bLife = true;
 	
 	m_fCurrFrame = 0.f;
 	m_fSpeed = 0.f;
-	m_fMoveTimer = 0.f;
 }

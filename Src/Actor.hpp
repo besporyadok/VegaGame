@@ -21,7 +21,7 @@ Author:
 class CActor : public CEntity {
 public:
 	CActor();
-	CActor(sf::Texture&, float, float, int, int, std::string);
+	CActor(sf::Texture&, float, float, int, int);
 	
 	void Frame(float& fTime);
 	

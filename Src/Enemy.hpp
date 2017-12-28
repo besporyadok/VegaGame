@@ -10,15 +10,10 @@ public:
 	int direction;//направление движения врага
 
 	CEnemy();             // Конструкторы с без параметра и с параметрами 
-	CEnemy(sf::Texture&, float, float, int, int, std::string);
+	CEnemy(sf::Texture&, float, float, int, int);
 
 	void checkCollisionWithMap(float fDx, float fDy);//ф-ция проверки столкновений с картой
 	void Frame(float& fTime);
-
-	std::string* m_pszMapCode;
-
-	sf::Sprite getSprite() {return m_Sprite;}
-
 };
 
 /*

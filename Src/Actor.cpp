@@ -21,8 +21,8 @@ using namespace sf;
 
 CActor::CActor() : CEntity() {}
 
-CActor::CActor(sf::Texture& Texture, float fX, float fY, int nW, int nH, std::string szName) :
-CEntity(Texture, fX, fY, nW, nH, szName) {
+CActor::CActor(sf::Texture& Texture, float fX, float fY, int nW, int nH) :
+CEntity(Texture, fX, fY, nW, nH) {
 	m_state = STAY;
 	m_Sprite.setTextureRect(IntRect(0, 0, m_nW, m_nH));
 	

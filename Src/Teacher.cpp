@@ -1,25 +1,20 @@
 //Автор Свиридникова Дарья Сергеевна 21317гр  
 // Класс учителя
 
-#include "Teacher.h"
+#include "Teacher.hpp"
 
 using namespace sf;
 
 CTeacher::CTeacher() : CEntity() {}
 
-CTeacher::CTeacher(sf::Texture& Texture, float fX, float fY, int nW, int nH, std::string szName) : 
-CEntity(Texture, fX, fY, nW, nH, szName) {
-		if (szName == "Teacher")
-			{ //Задаем спрайту один прямоугольник для вывода одного игрока. IntRect – для приведения типов 
-			//	m_nW = nW; m_nH = nH;
-				m_Sprite.setTextureRect(IntRect(0, 0, m_nW, m_nH));
+CTeacher::CTeacher(sf::Texture& Texture, float fX, float fY, int nW, int nH) : 
+CEntity(Texture, fX, fY, nW, nH) {
+		//Задаем спрайту один прямоугольник для вывода одного игрока. IntRect – для приведения типов 
+		m_Sprite.setTextureRect(IntRect(0, 0, m_nW, m_nH));
 
-				direction1 = rand() % (3); //Направление движения врага задаём случайным образом через генератор случайных чисел 
-				m_fSpeed = 0.07f;//даем скорость.этот объект всегда двигается  /// KIRAY: Speed change
-				m_fDx = m_fSpeed; 
-
-			//	m_fX = fX; m_fY = fY;
-			} 
+		direction1 = rand() % (3); //Направление движения врага задаём случайным образом через генератор случайных чисел 
+		m_fSpeed = 0.07f;//даем скорость.этот объект всегда двигается  /// KIRAY: Speed change
+		m_fDx = m_fSpeed;
 }
 
 //ф-ция проверки столкновений с картой

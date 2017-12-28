@@ -19,16 +19,14 @@ Parameters:
 	6) -unused-
 **/
 
-CEnemy::CEnemy(sf::Texture& Texture, float fX, float fY, int nW, int nH, std::string szName) : 
-CEntity(Texture, fX, fY, nW, nH, szName) {
+CEnemy::CEnemy(sf::Texture& Texture, float fX, float fY, int nW, int nH) : 
+CEntity(Texture, fX, fY, nW, nH) {
 	// Задаем спрайту один прямоугольник для вывода одного игрока. IntRect – для приведения типов 
-	if (szName == "Army") {
-		m_Sprite.setTextureRect(IntRect(0, 0, m_nW, m_nH));
+	m_Sprite.setTextureRect(IntRect(0, 0, m_nW, m_nH));
 
-		direction = rand() % (3); // Направление движения врага задаём случайным образом через генератор случайных чисел 
-		m_fSpeed = 0.1f;// Даем скорость.этот объект всегда двигается 
-		m_fDx = m_fSpeed;
-	} 
+	direction = rand() % (3); // Направление движения врага задаём случайным образом через генератор случайных чисел 
+	m_fSpeed = 0.1f;// Даем скорость.этот объект всегда двигается 
+	m_fDx = m_fSpeed;
 }
 
 //ф-ция проверки столкновений с картой

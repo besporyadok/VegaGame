@@ -40,7 +40,7 @@
     <ClInclude Include="Enemy.hpp">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="Teacher.h">
+    <ClInclude Include="Teacher.hpp">
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">

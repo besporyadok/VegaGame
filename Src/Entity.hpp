@@ -23,7 +23,7 @@ Author:
 class CEntity {
 public:
 	CEntity();
-	CEntity(sf::Texture&, float, float, int, int, std::string);
+	CEntity(sf::Texture&, float, float, int, int);
 
 	sf::Sprite& getSprite() { return m_Sprite; }  // Получить спрайт
 
@@ -54,9 +54,6 @@ protected:
 	sf::Sprite  m_Sprite; // Спрайт
 	
 private:
-	float m_fMoveTimer;
-	
-	std::string m_szName; // Имя НПС
 	sf::Texture m_Texture; // Текстура, которая будет наложена на спрайт
 };
 

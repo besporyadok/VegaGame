@@ -1,3 +1,4 @@
+//! KIRAY begin1
 /*++
 
 VegeTable group, FTI grp. 21317
@@ -13,12 +14,13 @@ Author:
 
 --*/
 
+#include <list>
 #include <sstream>
 #include <SFML\Graphics.hpp>
 
 #include "Actor.hpp"
 #include "Enemy.hpp"
-#include "Teacher.h"
+#include "Teacher.hpp"
 
 #pragma comment(lib, "sfml-system-d")
 #pragma comment(lib, "sfml-window-d")
@@ -51,7 +53,8 @@ int main(int argc, char* argv[]) {
 	// Создаём объект класса игрока
 	Texture actorTexture;
 	actorTexture.loadFromFile("../Data/Actor.png");
-	CActor actor(actorTexture, 50.f, 50.f, 96, 96, "Actor");
+	CActor actor(actorTexture, 50.f, 50.f, 96, 96);
+//! KIRAY end1
 
 	// Создаём объект класса враг
 	Image enemyImg;
@@ -59,9 +62,21 @@ int main(int argc, char* argv[]) {
 	enemyImg.createMaskFromColor(Color(255, 255, 255));
 	Texture textEnemy;
 	textEnemy.loadFromImage(enemyImg);
-	
-	CEnemy Army1(textEnemy, 100.f, 200.f, 96, 96, "Army");
 
+//! KIRAY begin2	
+	unsigned const nKomsCnt = 3; // Кол-во коммисаров для спавна
+	std::list<CEntity*> lstKoms; // Список, куда мы их собственно запихаем
+	std::list<CEntity*>::iterator itKoms;
+	srand(time(NULL)); // Инициализируем генератора псевдослучайных чисел, так, на всякий
+	
+	for(unsigned i=0; i<nKomsCnt; i++) {
+		float fRx = 100 + rand()%700; // Генерим координату X в диапазоне [100;700]
+		float fRy = 100 + rand()%400; // Генерим координату Y в диапазоне [100;400]
+		// Плодим нужное кол-во коммисаров и заталкиваем в конец списка
+		lstKoms.push_back(new CEnemy(textEnemy, fRx, fRy, 96, 96));
+	}
+//!KIRAY end2
+	
 	// Создаём объект класса учитель
 	sf:: Image image_Teacher;
 	image_Teacher.loadFromFile("../Data/Teacher.png");
@@ -69,8 +84,9 @@ int main(int argc, char* argv[]) {
 	Texture textTeacher;
 	textTeacher.loadFromImage(image_Teacher);
 
-	CTeacher Teacher(textTeacher, 100.f, 200.f, 96, 96, "Teacher");
+	CTeacher Teacher(textTeacher, 100.f, 200.f, 96, 96);
 
+//! KIRAY begin3
 	Clock clock;
 	Event event;
 	while(wnd.isOpen()) {
@@ -90,16 +106,19 @@ int main(int argc, char* argv[]) {
 		// Передаём в качестве параметра скорость игры
 		if(bGame) {
 			actor.Frame(fTime);
-			Army1.Frame(fTime);
+//! KIRAY end3
 			Teacher.Frame(fTime);
+//! KIRAY begin4
+			for(itKoms = lstKoms.begin(); itKoms != lstKoms.end(); itKoms++) 
+				(*itKoms)->Frame(fTime); // Готовим кадр для коммисаров
 		}
 
 		// Пока игрок чуть менее, чем полностью жив, то проверяем столкновение 
 		// с тов. военкомом
 		if(actor.m_bLife == true) {
-			if(actor.getRect().intersects(Army1.getRect())) {
-				actor.nHealth = 0;
-				bGame = false;
+			for(itKoms = lstKoms.begin(); itKoms != lstKoms.end(); itKoms++) {
+				// Встретил военкома - добро пожаловать в вооруженные силы ;-)
+				if(actor.getRect().intersects((*itKoms)->getRect())) bGame = false;
 			}
 				
 			if(actor.getRect().intersects(Teacher.getRect()) && actor.uLabCnt >= 3)
@@ -121,9 +140,9 @@ int main(int argc, char* argv[]) {
 			}
 		
 		// Отрисовываем худ (здоровье, собранные лабы)
-		std::ostringstream strLab, strHealth;
-		strLab << actor.uLabCnt; strHealth << actor.nHealth;
-		txt.setString("Lab's: " + strLab.str() + "\nHealth: " + strHealth.str());
+		std::ostringstream strLab;
+		strLab << actor.uLabCnt;
+		txt.setString("Lab's: " + strLab.str());
 		txt.setPosition(650, 500);
 		wnd.draw(txt);
 		// Выводим, если необходимо, сообщение о проигрыше
@@ -134,11 +153,16 @@ int main(int argc, char* argv[]) {
 		
 		// Рисуем объекты
 		wnd.draw(actor.getSprite());
-		wnd.draw(Army1.getSprite());
+//! KIRAY end4
 		wnd.draw(Teacher.getSprite());
 		
+//! KIRAY begin5	
+		for(itKoms = lstKoms.begin(); itKoms != lstKoms.end(); itKoms++)
+			wnd.draw((*itKoms)->getSprite()); // Отрисовываем твоего любимого военкома
+
 		wnd.display(); // Отображаем отрисованный кадр
 	}
 	
 	return 0;
 }
+//! KIRAY end5
