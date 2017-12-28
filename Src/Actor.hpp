@@ -13,7 +13,8 @@ Author:
 
 --*/
 
-#pragma once
+#ifndef _ACTOR_H
+#define _ACTOR_H
 
 #include "Entity.hpp"
 
@@ -25,7 +26,7 @@ public:
 	
 	void Frame(float& fTime);
 	
-	void setMap(std::string* szMapCode) { m_pszMapCode = szMapCode; }
+//	void setMap(std::string* szMapCode) { m_pszMapCode = szMapCode; }
 	unsigned getLabCnt() {return m_uLabCnt;}
 	
 private:
@@ -37,3 +38,5 @@ private:
 	std::string* m_pszMapCode;
 	eStates m_state;
 };
+
+#endif // ndef _ACTOR_H

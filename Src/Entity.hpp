@@ -13,9 +13,12 @@ Author:
 
 --*/
 
-#pragma once
+#ifndef _ENTITY_H
+#define _ENTITY_H
 
 #include <SFML\Graphics.hpp>
+
+#include "Map.h"
 
 class CEntity {
 public:
@@ -54,3 +57,5 @@ private:
 	std::string m_szName;
 	sf::Texture m_Texture;
 };
+
+#endif // ndef _ENTITY_H

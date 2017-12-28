@@ -49,7 +49,7 @@ CEntity(Texture, fX, fY, nW, nH, szName) {
 void  CEnemy::checkCollisionWithMap(float fDx, float fDy) { 
 	for(unsigned i = m_fY/32; i < (m_fY+m_nH)/32; i++)
 		for(unsigned j = m_fX/32; j < (m_fX+m_nW)/32; j++) {
-			if(m_pszMapCode[i][j] == '0') {
+			if(g_szMap[i][j] == '0') {
 				if(fDy > 0) {
 					m_fY = i*32 - m_nH;
 					m_fDy = 0.f; direction = rand() % (3);

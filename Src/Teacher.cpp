@@ -27,7 +27,7 @@ void  CTeacher::CollisionWithMap(float m_fDx, float m_fDy) {
 			for (unsigned i = m_fY / 32; i < (m_fY + m_nH) / 32; i++)//проходимся по элементам карты 
 				for (unsigned j = m_fX / 32; j<(m_fX + m_nW) / 32; j++) 
 				{ 
-					if (m_pszMapCode[i][j] == '0')//если элемент - тайлик земли
+					if (g_szMap[i][j] == '0')//если элемент - тайлик земли
 					{ 
 					if (m_fDy > 0) {
 						m_fY = i * 32 - m_nH;

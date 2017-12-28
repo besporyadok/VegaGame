@@ -26,26 +26,6 @@ Author:
 
 using namespace sf;
 
-#define MAP_HEIGHT 15
-#define MAP_WIDTH 20
-std::string szMap[MAP_HEIGHT] = {
-	"00000000000000000000",
-	"01111111110011111110",
-	"01111111112011111110",
-	"01111111111011111110",
-	"01111111111011111110",
-	"01111111111111111110",
-	"01111111111111111110",
-	"01111111111111111110",
-	"01111111000000011110",
-	"01111111111111111110",
-	"01221111111111111110",
-	"01111111111111111110",
-	"01111111111111111110",
-	"01111111111111111110",
-	"00000000000000000000",
-};
-
 int main(int argc, char* argv[]) {
 	VideoMode desk = VideoMode::getDesktopMode();
 	RenderWindow wnd(VideoMode(640, 480, desk.bitsPerPixel), "VegaGame");
@@ -67,7 +47,7 @@ int main(int argc, char* argv[]) {
 	Texture actorTexture;
 	actorTexture.loadFromFile("../Data/Actor0.png");
 	CActor actor(actorTexture, 50.f, 50.f, 96, 96, "Actor");
-	actor.setMap(szMap);
+//	actor.setMap(g_szMap);
 
 	// Enemy Test
 	Image enemyImg;
@@ -77,7 +57,7 @@ int main(int argc, char* argv[]) {
 	textEnemy.loadFromImage(enemyImg);
 	
 	CEnemy Army1(textEnemy, 100.f, 200.f, 96, 96, "Army"); //объект класса врага
-	Army1.setMap(szMap);
+//	Army1.setMap(g_szMap);
 
 	// 
 	sf:: Image image_Teacher;
@@ -87,7 +67,7 @@ int main(int argc, char* argv[]) {
 	textTeacher.loadFromImage(image_Teacher);
 
 	CTeacher Teacher(textTeacher, 100.f, 200.f, 96, 96, "Teacher");//объект класса Учителя
-	Teacher.setMap(szMap);
+//	Teacher.setMap(g_szMap);
 
 	Clock clock;
 	Event event;
@@ -114,10 +94,10 @@ int main(int argc, char* argv[]) {
 		// Map tmp
 		for(unsigned i=0; i<MAP_HEIGHT; i++)
 			for(unsigned j=0; j<MAP_WIDTH; j++) {
-				if(szMap[i][j] == '0') mapSprite.setTextureRect(IntRect(32, 0, 32, 32));
-				if(szMap[i][j] == '1') mapSprite.setTextureRect(IntRect(0, 0, 32, 32));
-				if(szMap[i][j] == '2') mapSprite.setTextureRect(IntRect(64, 0, 32, 32));
-				if(szMap[i][j] == '3') mapSprite.setTextureRect(IntRect(96, 0, 32, 32));
+				if(g_szMap[i][j] == '0') mapSprite.setTextureRect(IntRect(32, 0, 32, 32));
+				if(g_szMap[i][j] == '1') mapSprite.setTextureRect(IntRect(0, 0, 32, 32));
+				if(g_szMap[i][j] == '2') mapSprite.setTextureRect(IntRect(64, 0, 32, 32));
+				if(g_szMap[i][j] == '3') mapSprite.setTextureRect(IntRect(96, 0, 32, 32));
 				
 				mapSprite.setPosition(j*32, i*32);
 				wnd.draw(mapSprite);

@@ -1,7 +1,8 @@
 //Автор Свиридникова Дарья Сергеевна 21317гр  
 // Класс учителя
 
-#pragma once
+#ifndef _TEACHER_H
+#define _TEACHER_H
 
 #include "Entity.hpp"
 
@@ -17,8 +18,10 @@ public:
 	void Frame(float& fTime);
 
 	std::string* m_pszMapCode;
-	void setMap(std::string* dsd) {m_pszMapCode = dsd;}
+//	void setMap(std::string* dsd) {m_pszMapCode = dsd;}
 
 	sf::Sprite getSprite() {return m_Sprite;}
 
 };
+
+#endif // ndef _TEACHER_H

@@ -1,6 +1,7 @@
 //Автор Пийпаринен Алексей 21317гр 
 // Класс врага
-#pragma once
+#ifndef _ENEMY_H
+#define _ENEMY_H
 
 #include "Entity.hpp"
 
@@ -16,7 +17,7 @@ public:
 	void Frame(float& fTime);
 
 	std::string* m_pszMapCode;
-	void setMap(std::string* dsd) {m_pszMapCode = dsd;}
+//	void setMap(std::string* dsd) {m_pszMapCode = dsd;}
 
 	sf::Sprite getSprite() {return m_Sprite;}
 
@@ -29,3 +30,5 @@ public:
 	float m_fSpeed, m_fCurrFrame;
 	sf::Sprite  m_Sprite;
 */
+
+#endif // ndef _ENEMY_H

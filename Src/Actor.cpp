@@ -88,7 +88,7 @@ void CActor::Frame(float& fTime) {
 void CActor::Collision(float fDx, float fDy) {
 	for(unsigned i = m_fY/32; i < (m_fY+m_nH)/32; i++)
 		for(unsigned j = m_fX/32; j < (m_fX+m_nW)/32; j++) {
-			if(m_pszMapCode[i][j] == '0') {
+			if(g_szMap[i][j] == '0') {
 				if(fDy > 0) {
 					m_fY = i*32 - m_nH;
 					m_fDy = 0.f;
@@ -104,8 +104,8 @@ void CActor::Collision(float fDx, float fDy) {
 				}
 			}
 			
-			if(m_pszMapCode[i][j] == '2') {
-				m_pszMapCode[i][j] = '1';
+			if(g_szMap[i][j] == '2') {
+				g_szMap[i][j] = '1';
 				m_uLabCnt++;
 			}
 		}

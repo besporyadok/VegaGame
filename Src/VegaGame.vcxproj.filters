@@ -23,6 +23,12 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="Teacher.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.hpp">
@@ -32,6 +38,12 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Teacher.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
