@@ -1,7 +1,7 @@
 //! KIRAY begin1
 /*++
 
-VegeTable group, FTI grp. 21317
+VegeTable group, FTI grp. <extr>
 
 Filename:
 	EP.cpp

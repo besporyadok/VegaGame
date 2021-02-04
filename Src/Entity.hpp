@@ -1,6 +1,6 @@
 /*++
 
-VegeTable group, FTI grp. 21317
+VegeTable group, FTI grp. <extr>
 
 Filename:
 	Entity.hpp

@@ -1,5 +1,4 @@
-//Автор Свиридникова Дарья Сергеевна 21317гр  
-// Класс учителя
+// Teacher class
 
 #ifndef _TEACHER_H
 #define _TEACHER_H
